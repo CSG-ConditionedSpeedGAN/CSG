@@ -1,9 +1,5 @@
 # **Conditional Generative Adversarial Networks for Speed Control in TrajectorySimulation**
 
-# Architecture Overview
-Arch overview:
-![Architecture](./figures/arch.png)
-
 **To reproduce the project, run the following command:**
 
 Initially, clone the repository
@@ -13,6 +9,13 @@ To install all dependencies, run:
 pip install -r requirements.txt
 ````
 
+### Datasets:
+- For single condition, use single_condition_dataset (ETH and UCY)
+- For multi condition:
+    - We utilized the current argoverse dataset version v1.1 (https://www.argoverse.org/data.html#forecasting-link). Select 5126, 1678 files from train and test set (Validation set) respectively.
+- For extrapolation feature, use single_condition_dataset/extrapolation_dataset.
+
+
 To use the pre-trained model, follow:
 - For Single-agent, turn USE_GPU flag to 1 and: 
     - To run the model without aggregation: change the flag AGGREGATION_TYPE = 'None' and use the checkpoints from the folder 'NoAgg'
@@ -20,7 +23,7 @@ To use the pre-trained model, follow:
     - To run the model with Concat: change the flag AGGREGATION_TYPE = 'concat' and use the checkpoints from the folder 'Concat'
     - To run the model with Attention: change the flag AGGREGATION_TYPE = 'attention' and use the checkpoints from the folder 'Attention'
 - For Multi-agent, turn USE_GPU flag to 0 and change the flag AGGREGATION_TYPE = 'None' and use the checkpoints from the folder 'MultiAgent'
-
+- For Extrapolation, activate the flag EXTRAPOLATE_MIN, EXTRAPOLATE_MId or EXTRAPOLATE_MAX (one at time) and change the flag AGGREGATION_TYPE = 'concat' and use the checkpoints from the folder 'Extrapolation'.
 
 * For Simulation: change the TEST_METRIC to 2 and select one of the following options in CONSTANTS.py:
     * For Single-agent simulation, turn USE_GPU flag to 1 and:
