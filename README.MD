@@ -2,7 +2,7 @@
 
 # Architecture Overview
 Arch overview:
-![OriginalSpeedPlot1](./figures/arch.png)
+![Architecture](./figures/arch.png)
 
 **To reproduce the project, run the following command:**
 
