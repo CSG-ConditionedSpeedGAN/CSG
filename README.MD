@@ -2,14 +2,14 @@
 
 # Architecture Overview
 Arch overview:
-![OriginalSpeedPlot1](https://github.com/VishalSowrirajan/CGANbasedTrajectoryPrediction/blob/feature/full_network/arch.png)
+![OriginalSpeedPlot1](https://github.com/CSG-ConditionedSpeedGAN/CSG/blob/main/figures/arch.png)
 
 
 Single agent Simulation with GT (left) and Maximum speed (0.9):
-![OriginalSpeedPlot](https://github.com/VishalSowrirajan/CGANbasedTrajectoryPrediction/blob/master/Plots/Real%20and%20Simulated%20Traj%20-%20Max%20Speed.gif)
+![OriginalSpeedPlot](https://github.com/CSG-ConditionedSpeedGAN/CSG/blob/main/figures/Real%20and%20Simulated%20Traj%20-%20Max%20Speed.gif)
 
 Single agent Simulation with GT (left) and Minimum speed (0.0):
-![IncreasedSpeedPlot](https://github.com/VishalSowrirajan/CGANbasedTrajectoryPrediction/blob/master/Plots/Real%20vs%20Simulated%20-%20Stop%20ped.gif)
+![IncreasedSpeedPlot](https://github.com/CSG-ConditionedSpeedGAN/CSG/blob/main/figures/Real%20vs%20Simulated%20-%20Stop%20ped.gif)
 
 **To reproduce the project, run the following command:**
 
