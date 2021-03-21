@@ -4,13 +4,6 @@
 Arch overview:
 ![OriginalSpeedPlot1](./figures/arch.png)
 
-
-Single agent Simulation with GT (left) and Maximum speed (0.9):
-![OriginalSpeedPlot](./figures/Real and Simulated Traj - Max Speed.gif)
-
-Single agent Simulation with GT (left) and Minimum speed (0.0):
-![IncreasedSpeedPlot](./figures/Real and Simulated Traj - Stop ped.gif)
-
 **To reproduce the project, run the following command:**
 
 Initially, clone the repo:
