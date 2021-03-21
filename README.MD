@@ -6,10 +6,7 @@ Arch overview:
 
 **To reproduce the project, run the following command:**
 
-Initially, clone the repo:
-````
-git clone https://github.com/VishalSowrirajan/CGANbasedTrajectoryPrediction.git
-````
+Initially, clone the repository
 
 To install all dependencies, run:
 ````
