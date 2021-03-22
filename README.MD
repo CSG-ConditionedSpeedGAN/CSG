@@ -16,7 +16,7 @@ pip install -r requirements.txt
 |:-------------:|:-------------:|:-------------:|
 | Obs len, Pred len |  3.2 sec (8 frames) and 4.8 sec (12 frames) | 2 sec (20 frames) and 3 sec (30 frames) |
 | Path |    In Project: use single_condition_dataset  |  Argoverse dataset version v1.1 |
-| Approach | Hold-one out |    5126, 1678 files for train and test respectively |
+| Approach | Hold-one out |    5126, 1678 files for train and test respectively https://www.argoverse.org/data.html#forecasting-link |
 | Training | Trained on GPU (USE_GPU flag = 1) |    Trained on CPU (USE_GPU flag = 0) |
     
 Argoverse dataset version v1.1: https://www.argoverse.org/data.html#forecasting-link
