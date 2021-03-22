@@ -37,7 +37,7 @@ Another example depicting our model's control: GT (left) and Min speed (right). 
 - `CHECKPOINT_NAME`: Path of the checkpoint at which the weights needs to be stored.
 - `BATCH`: Batch size
 - `BATCH_NORM`: Batch normalization option
-- `ACTIVATION`: We use leakyrelu activation function.
+- `ACTIVATION`: Activation functions used.
 - `G_STEPS`, `D_STEPS`: The number of feed-forward and backward passes for generator and discriminator respectively.
 - `NUM_SAMPLES`: Number of samples to test the model
 - `NOISE`: Noise to be added.
