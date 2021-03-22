@@ -99,9 +99,9 @@ After changing the required flags, run:
 ````
 python evaluate_model.py
 ````
-For Simulation: The output of the script enables the user to select the agent ids and the speed is verified for the user-selected agents.
+***For Simulation:*** The output of the script enables the user to select the agent ids and the speed is verified for the user-selected agents.
 
-For Prediction: The ADE, FDE and CA metrics are given as output. 
+***For Prediction:*** The ADE, FDE and CA metrics are given as output. 
 
 To train the model from scratch, 
 
