@@ -12,14 +12,6 @@ We show an example of agents moving at GT (left) and simulated max speed (right)
 Another example depicting our model's control: GT (left) and Min speed (right). Given a speed of 0, agent tend to stop instantaneously.
 ![SimulatedPlot1](./figures/Real%20vs%20Simulated%20-%20Stop%20ped.gif)
 
-**To reproduce the project, run the following command:**
-
-Initially, clone the repository
-
-To install all dependencies, run:
-````
-pip install -r requirements.txt
-````
 
 ### Datasets:
 - ***For Single agent:***
@@ -109,3 +101,5 @@ Change the CHECKPOINT_NAME (provide a new filename), change the required aggrega
 ````
 python train.py
 ````
+
+Implementation details can be found [here](Implementation_details.MD)
