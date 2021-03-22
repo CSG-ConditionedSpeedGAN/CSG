@@ -14,7 +14,7 @@ Similar to attention module, we consider 'N' nearest agents and pass the conside
 The final hidden states are then embedded by passing through a multi layer FC with 32,64 and 24 units before adding noise of size 8. We replace the first dimension as 64 if aggregation component is used where 32 represents encoder hidden states and the rest 32 indicates the aggregation latent space units. We use these latent vectors to initialise the speed forecaster and the decoder.
 
 ### Speed Forecasting Block: 
-The speed forecasting block uses a single layer of LSTMs with 32 dimensions. The input, which is the last observed speed, is passed through an embedding layer of 16 dimensions before being fed to LSTMs with 32 hidden units. The final hidden states are then passed through a FC with [32,1] followed by sigmoid activations, to represent the speed at the next time step.
+The speed forecasting block uses a single layer of LSTMs with 32 dimensions. The input, which is the last observed speed, is passed through an embedding layer of 16 dimensions before being fed to LSTMs with 32 hidden units. The final hidden states are then passed through a FC with 32 and 1 units followed by sigmoid activations, to represent the speed at the next time step.
 
 ### Decoder: 
 Similar to the feature extractor, we embed our inputs to a fixed size vector. The hidden states of the decoder are passed through a FC network of 32 and 2 units with the outputs representing the next timestep relative coordinates.
