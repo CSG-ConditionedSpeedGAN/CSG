@@ -23,20 +23,15 @@ Argoverse dataset version v1.1: https://www.argoverse.org/data.html#forecasting-
 
 
 ## Pretrained Models:
+- For single-agent, `USE_GPU=1`:
+    - `'NoAgg' folder`: contains 5 pretrained models for CSG.
+    - `'PM' folder`: contains 5 pretrained models for CSG-P.
+    - `'Concat' folder`: contains 5 pretrained models for CSG-C.
+    - `'Attention' folder`: contains 5 pretrained models for CSG-A.
+    - `'Extrapolation' folder`: contains 3 pretrained models for CSG-C (for minimum, medium and maximum speed folds).
+- For multi-agent, `USE_GPU=0`:
+    - `'MultiAgent' folder`: contains pretrained model for CSG for Argoverse dataset.
 
-- `'NoAgg' folder`: contains 5 pretrained models for CSG.
-- `'PM' folder`: contains 5 pretrained models for CSG-P.
-- `'Concat' folder`: contains 5 pretrained models for CSG-C.
-- `'Attention' folder`: contains 5 pretrained models for CSG-A.
-
-To use the pre-trained model, follow:
-- For Single-agent, turn USE_GPU flag to 1 and: 
-    - To run the model without aggregation: change the flag AGGREGATION_TYPE = 'None' and use the checkpoints from the folder 'NoAgg'
-    - To run the model with PM: change the flag AGGREGATION_TYPE = 'pooling' and use the checkpoints from the folder 'PM'
-    - To run the model with Concat: change the flag AGGREGATION_TYPE = 'concat' and use the checkpoints from the folder 'Concat'
-    - To run the model with Attention: change the flag AGGREGATION_TYPE = 'attention' and use the checkpoints from the folder 'Attention'
-- For Multi-agent, turn USE_GPU flag to 0 and change the flag AGGREGATION_TYPE = 'None' and use the checkpoints from the folder 'MultiAgent'
-- For Extrapolation, activate the flag EXTRAPOLATE_MIN, EXTRAPOLATE_MId or EXTRAPOLATE_MAX (one at time) and change the flag AGGREGATION_TYPE = 'concat' and use the checkpoints from the folder 'Extrapolation'.
 
 * For Simulation: change the TEST_METRIC to 2 and select one of the following options in CONSTANTS.py:
     * For Single-agent simulation, turn USE_GPU flag to 1 and:
