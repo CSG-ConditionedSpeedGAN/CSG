@@ -339,7 +339,7 @@ class AttentionModule(nn.Module):
             attn_w = F.softmax(self.attn(attn_h.view(num_ped, -1)), dim=1)
             attn_w = attn_w.view(num_ped, MAX_CONSIDERED_PED, 1)
             attn_h = torch.sum(attn_h * attn_w, dim=1)
-            f_attn_h.append(f_attn_h)
+            f_attn_h.append(attn_h)
         f_attn_h = torch.cat(f_attn_h, dim=0)
         return f_attn_h
 
