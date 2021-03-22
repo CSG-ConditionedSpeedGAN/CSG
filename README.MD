@@ -97,7 +97,7 @@ python evaluate_model.py
 
 To train the model from scratch, 
 
-Change the CHECKPOINT_NAME (provide a new filename), change the required aggregation flags and run:
+Change the `CHECKPOINT_NAME` in constants.py (provide a new filename), change the required aggregation flags and run:
 ````
 python train.py
 ````
