@@ -12,8 +12,10 @@ pip install -r requirements.txt
 ### Datasets:
 - For single condition, use single_condition_dataset (ETH and UCY)
 - For multi condition:
-    - We utilized the current argoverse dataset version v1.1 (https://www.argoverse.org/data.html#forecasting-link). Select 5126, 1678 files from train and test set (Validation set) respectively.
+    - We utilized the current argoverse dataset version v1.1 (https://www.argoverse.org/data.html#forecasting-link). Select 5126, 1678 files to form the train and test respectively.
 - For extrapolation feature, use single_condition_dataset/extrapolation_dataset.
+- OBS_LEN and PRED_LEN for single agent is 3.2 seconds (8 frames) and 4.8 seconds (12 frames) respectively 
+- OBS_LEN and PRED_LEN for multi agent is 2 seconds (20 frames) and 3 seconds (30 frames) respectively
 
 
 To use the pre-trained model, follow:
