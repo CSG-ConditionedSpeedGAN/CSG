@@ -24,10 +24,10 @@ Argoverse dataset version v1.1: https://www.argoverse.org/data.html#forecasting-
 
 ## Pretrained Models:
 
-- <mark> 'NoAgg' folder </mark>: contains 5 pretrained models for CSG.
-- 'PM' folder: contains 5 pretrained models for CSG-P.
-- 'Concat' folder: contains 5 pretrained models for CSG-C.
-- 'Attention' folder: contains 5 pretrained models for CSG-A.
+- `'NoAgg' folder`: contains 5 pretrained models for CSG.
+- `'PM' folder`: contains 5 pretrained models for CSG-P.
+- `'Concat' folder`: contains 5 pretrained models for CSG-C.
+- `'Attention' folder`: contains 5 pretrained models for CSG-A.
 
 To use the pre-trained model, follow:
 - For Single-agent, turn USE_GPU flag to 1 and: 
