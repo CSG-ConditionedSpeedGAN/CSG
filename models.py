@@ -239,7 +239,7 @@ class AggregationModule(nn.Module):
         self.mlp_pre_pool = make_mlp(mlp_pre_pool_dims, activation=ACTIVATION_RELU, batch_norm=BATCH_NORM, dropout=DROPOUT)
 
     def forward(self, h_states, seq_start_end, train_or_test, last_pos, label=None):
-        pool_h = []
+        agg_h = []
         for _, (start, end) in enumerate(seq_start_end):
             start = start.item()
             end = end.item()
@@ -268,10 +268,10 @@ class AggregationModule(nn.Module):
                     h_state_zeros[:, :self.h_dim * num_ped] = required_h_states
                     req_h_states.append(h_state_zeros)
             aggregated_h_states = torch.cat(req_h_states, dim=0)
-            agg_h = self.mlp_pre_pool(aggregated_h_states)
-            pool_h.append(agg_h)
-        pool_h = torch.cat(pool_h, dim=0)
-        return pool_h
+            curr_agg_h = self.mlp_pre_pool(aggregated_h_states)
+            agg_h.append(agg_h)
+        agg_h = torch.cat(agg_h, dim=0)
+        return agg_h
 
 
 class AttentionModule(nn.Module):
@@ -292,7 +292,7 @@ class AttentionModule(nn.Module):
         self.mlp_pre_pool = make_mlp(mlp_pre_pool_dims, activation=ACTIVATION_RELU, batch_norm=BATCH_NORM, dropout=DROPOUT)
 
     def forward(self, h_states, seq_start_end, train_or_test, last_pos, label=None):
-        pool_h = []
+        f_attn_h = []
         for _, (start, end) in enumerate(seq_start_end):
             start = start.item()
             end = end.item()
@@ -339,9 +339,9 @@ class AttentionModule(nn.Module):
             attn_w = F.softmax(self.attn(attn_h.view(num_ped, -1)), dim=1)
             attn_w = attn_w.view(num_ped, MAX_CONSIDERED_PED, 1)
             attn_h = torch.sum(attn_h * attn_w, dim=1)
-            pool_h.append(attn_h)
-        pool_h = torch.cat(pool_h, dim=0)
-        return pool_h
+            f_attn_h.append(f_attn_h)
+        f_attn_h = torch.cat(f_attn_h, dim=0)
+        return f_attn_h
 
 
 def speed_control(pred_traj_first_speed, seq_start_end, label=None, id=None):
