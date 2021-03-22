@@ -269,7 +269,7 @@ class AggregationModule(nn.Module):
                     req_h_states.append(h_state_zeros)
             aggregated_h_states = torch.cat(req_h_states, dim=0)
             curr_agg_h = self.mlp_pre_pool(aggregated_h_states)
-            agg_h.append(agg_h)
+            agg_h.append(curr_agg_h)
         agg_h = torch.cat(agg_h, dim=0)
         return agg_h
 
