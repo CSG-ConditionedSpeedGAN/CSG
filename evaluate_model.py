@@ -175,16 +175,20 @@ def main():
     print('Test dataset preprocessing done')
 
     cm, ade_final, fde_final = [], [], []
-    for _ in range(1):
+    if TEST_METRIC == 1:
+        for _ in range(20):
+            ade, fde, ca = evaluate(loader, generator, NUM_SAMPLES, speed_regressor)
+            cm.append(ca)
+            ade_final.append(ade)
+            fde_final.append(fde)
+            print(ade, fde)
+            print('Pred Len: {}, ADE: {:.2f}, FDE: {:.2f}'.format(PRED_LEN, ade, fde))
+        print('average collision: ', sum(cm) / len(cm))
+        print('average ade: ', sum(ade_final) / len(ade_final))
+        print('average fde: ', sum(fde_final) / len(fde_final))
+    else:
         ade, fde, ca = evaluate(loader, generator, NUM_SAMPLES, speed_regressor)
-        cm.append(ca)
-        ade_final.append(ade)
-        fde_final.append(fde)
-        print(ade, fde)
         print('Pred Len: {}, ADE: {:.2f}, FDE: {:.2f}'.format(PRED_LEN, ade, fde))
-    print('average collision: ', sum(cm) / len(cm))
-    print('average ade: ', sum(ade_final) / len(ade_final))
-    print('average fde: ', sum(fde_final) / len(fde_final))
 
 
 if __name__ == '__main__':

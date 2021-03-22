@@ -3,8 +3,8 @@ OBS_LEN = 20
 PRED_LEN = 30
 MULTI_TRAIN_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/train'
 MULTI_VAL_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/val'
-CHECKPOINT_NAME = 'Checkpoints/argoverse_50epochs_Random/2.pt'
-MULTI_TEST_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/Speed_check_Test'
+CHECKPOINT_NAME = 'Checkpoints/MultiAgent/Multi_agent.pt'
+MULTI_TEST_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/test3'
 
 SINGLE_TRAIN_DATASET_PATH = 'single_condition_dataset/eth/train'
 SINGLE_VAL_DATASET_PATH = 'single_condition_dataset/eth/val'
@@ -69,7 +69,7 @@ TEST_METRIC = 2  # To simulate trajectories, change the flag to 2 and for predic
 TRAIN_METRIC = 0  # Used for training the model with the ground truth
 VERIFY_OUTPUT_SPEED = 1
 
-# STOP_PED, CONSTANT_SPEED_FOR_ALL_PED - Only one flag out of the 2 can be activated at once.
+# STOP_PED_SINGLE_CONDITION, CONSTANT_SPEED_SINGLE_CONDITION - Only one flag out of the 2 can be activated at once.
 
 # Below flag is set to true if multi condition model on argoverse dataset is set to true.
 DIFFERENT_SPEED_MULTI_CONDITION = True
