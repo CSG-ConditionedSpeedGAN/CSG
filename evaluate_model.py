@@ -14,7 +14,6 @@ def collisionPercentage(traj, sequences):
     collided_or_not = []
     for (start, end) in sequences:
         curr_Traj = traj[:, start:end, :].cpu().data.numpy()
-        # no_of_frames += curr_frame
         curr_collided_peds = 0
         peds = 0
         for trajectories in curr_Traj:
@@ -86,7 +85,7 @@ def evaluate(loader, generator, num_samples, speed_regressor):
                                                           pred_traj_gt,
                                                           TEST_METRIC, fake_speed, obs_obj_rel_speed, obs_label=None,
                                                           pred_label=None)
-                elif TEST_METRIC == 2:
+                elif TEST_METRIC == 2:  # Used during Simulation environment
                     if MULTI_CONDITIONAL_MODEL:
                         pred_traj_fake_rel, _ = generator(obs_traj, obs_traj_rel, seq_start_end, obs_ped_speed,
                                                           pred_ped_speed,
@@ -140,7 +139,6 @@ def evaluate(loader, generator, num_samples, speed_regressor):
 
         if TEST_METRIC == 2:
             if SINGLE_CONDITIONAL_MODEL:
-                # The speed can be verified for different sequences and this method runs for n number of batches.
                 verify_speed(simulated_traj, sequences, labels=None)
             else:
                 verify_speed(simulated_traj, sequences, labels=all_labels)

@@ -12,61 +12,15 @@ pip install -r requirements.txt
 ````
 
 ### Datasets:
-| Datasets |      Single-Agent      |      Multi-Agent      |
-|:-------------:|:-------------:|:-------------:|
-| Obs len, Pred len |  3.2 sec (8 frames) and 4.8 sec (12 frames) | 2 sec (20 frames) and 3 sec (30 frames) |
-| Path |    In Project: single_condition_dataset  |  Argoverse dataset version v1.1 |
-| Approach | Hold-one out |    5126, 1678 files for train and test respectively https://www.argoverse.org/data.html#forecasting-link |
-| Training | Trained on GPU (USE_GPU flag = 1) |    Trained on CPU (USE_GPU flag = 0) |
+- ***For Single agent:***
+    - Observed and Predicted length are 8 and 12 frames respectively.
+    - Dataset: single_condition_dataset (in the project folder)
+    - For extrapolation, use single_condition_dataset/extrapolation_dataset
+- ***For Multi agent:***
+    - Observed and Predicted length are 20 and 30 frames respectively.
+    - Dataset: We use Argoverse dataset version v1.1 (https://www.argoverse.org/data.html#forecasting-link). For our work, we use 5126, 1678 files for train and test respectively 
 
-
-## Pretrained Models:
-The code was developed and tested using Python 3.7.2.
-- For single-agent, `USE_GPU=1`:
-    - `'NoAgg' folder`: contains 5 pretrained models for CSG.
-    - `'PM' folder`: contains 5 pretrained models for CSG-P.
-    - `'Concat' folder`: contains 5 pretrained models for CSG-C.
-    - `'Attention' folder`: contains 5 pretrained models for CSG-A.
-    - `'Extrapolation' folder`: contains 3 pretrained models for CSG-C (for minimum, medium and maximum speed folds).
-- For multi-agent, `USE_GPU=0`:
-    - `'MultiAgent' folder`: contains pretrained model for CSG for Argoverse dataset.
-    
-
-For `simulation` environment, use `TEST_METRIC = 2` and for `prediction` environment, use `TEST_METRIC = 1` 
-To reproduce the repo, follow the below steps:
-
-Initially clone the repository and navigate to the project folder and run:
-````
-pip install -r requirements.txt
-````
-
-After successful installation of the libraries, select the required pre-trained model from `'Checkpoints'` folder and change the `CHECKPOINT_NAME` variable in Constants.py to the selected pre-trained model path.
-- For single-agent activate `SINGLE_CONDITIONAL_MODEL` and `USE_GPU` flag in constants.py and for multi-agent, activate `MULTI_CONDITIONAL_MODEL` flag and deactivate `USE_GPU` flag.
-
-***For Simulation Environment:*** To simulate trajectories at different user-defined conditions, change `TEST_METRIC` = 2 in Constants.py and select one of the below options:
-- ***To simulate single-agent***: Change the flag `CONSTANT_SPEED_SINGLE_CONDITION` in Constants.py to True and enter a value between 0 and 1 in CS_SINGLE_CONDITION variable  
-
-- ***To simulate multi-agent***: Change the flag `DIFFERENT_SPEED_MULTI_CONDITION` to True and enter a value between 0 and 1 to AV_SPEED, OTHER_SPEED, AGENT_SPEED in Constants.py.
-
-***For Prediction Environment:*** To predict trajectories, change the `TEST_METRIC` flag to 1.
-
-***Note:*** Either Simulation or Prediction can be performed at once. 
-
-After changing the required flags, run:
-````
-python evaluate_model.py
-````
-For Simulation: The output of the script enables the user to select the agent ids and the speed is verified for the user-selected agents.
-For Prediction: The ADE, FDE and CA metrics are given as output. 
-
-To train the model from scratch, 
-
-Change the CHECKPOINT_NAME (provide a new filename), change the required aggregation flags and run:
-````
-python train.py
-````
-
-# Flag descriptions:
+### Flag descriptions:
 
 - `H_DIM_GENERATOR_SINGLE_CONDITION`, `H_DIM_GENERATOR_MULTI_CONDITION`: hidden dimensions used for both encoder and decoder LSTM in G for single and multi agent respectively
 - `H_DIM_GENERATOR_SINGLE_CONDITION`, `H_DIM_GENERATOR_MULTI_CONDITION`: hidden dimensions used in D for single and multi agent respectively.
@@ -86,7 +40,7 @@ python train.py
 - `NUM_SAMPLES`: Number of samples to test the model
 - `NOISE`: Noise to be added.
 
-## Aggregation Module Flags
+### Aggregation Module Flags
 - `AGGREGATION_TYPE`: 'pooling' for CSG-P, 'attention' for CSG-A, 'concat' for CSG-C, 'None' for 'CSG'
 
 Note: In ETH/UCY, as each dataset has different max speed value, we implement a common threshold for max_value across all datasets and consider the speeds above the threshold as max_speeds.
@@ -95,8 +49,53 @@ In argoverse dataset, we set the ratio of low_speed:high_speed as 100:1.
 
 ## SPEED CONTROL FLAGS
 - `TRAIN_METRIC`: We utilize the next speed information from the ground truth to train the model. This value always holds 0. 
-- `TEST_METRIC`: For prediction environment, use 1 and for Simulation environment use 2.  
-- The following flags are applicable only if the `TEST_METRIC` = 2
-    - `STOP_PED`: This flag stops all the agents. This implies that a speed value of 0 is imposed on all the agents in ETH/UCY.
-    - `CONSTANT_SPEED_FOR_ALL_PED`: This flags imposes a constant speed to all pedestrians in ETH/UCY. If set True, enter a value between 0 and 1 in CS_SINGLE_CONDITION variable
-    - `DIFFERENT_SPEED_MULTI_CONDITION`:  Used during Multi-agent simulation. If set True, enter a value between 0 and 1 to AV_SPEED, OTHER_SPEED, AGENT_SPEED.
+- `TEST_METRIC`: For prediction environment use 1 and for Simulation environment use 2.  
+- `STOP_PED_SINGLE_CONDITION`: This flag stops all the agents in Single-agent condition. This implies that a speed value of 0 is imposed on all the agents in ETH/UCY.
+- `CONSTANT_SPEED_SINGLE_CONDITION`: This flags imposes a constant speed to all pedestrians in Single-agent condition. If set True, enter a value between 0 and 1 in CS_SINGLE_CONDITION variable
+- `DIFFERENT_SPEED_MULTI_CONDITION`:  Used during Multi-agent simulation. If set True, enter a value between 0 and 1 to AV_SPEED, OTHER_SPEED, AGENT_SPEED.
+
+## Pretrained Models:
+The code was developed and tested using Python 3.7.2.
+- For single-agent, `USE_GPU=1`:
+    - `'NoAgg' folder`: contains 5 pretrained models for CSG.
+    - `'PM' folder`: contains 5 pretrained models for CSG-P.
+    - `'Concat' folder`: contains 5 pretrained models for CSG-C.
+    - `'Attention' folder`: contains 5 pretrained models for CSG-A.
+    - `'Extrapolation' folder`: contains 3 pretrained models for CSG-C (for minimum, medium and maximum speed folds).
+- For multi-agent, `USE_GPU=0`:
+    - `'MultiAgent' folder`: contains pretrained model for CSG for Argoverse dataset.
+     
+To reproduce the repo, follow the below steps:
+
+Initially clone the repository and navigate to the project folder and run:
+````
+pip install -r requirements.txt
+````
+
+After successful installation of the libraries, select the required pre-trained model from `'Checkpoints'` folder and change the `CHECKPOINT_NAME` variable in Constants.py to the selected pre-trained model path, change `TRAIN_DATASET_PATH`, `VAL_DATASET_PATH` and `TEST_DATASET_PATH` in Constants.py according to Single/Multi condition. For Extrapolation feature, the train, val and test datasets remains the same.
+
+- For single-agent activate `SINGLE_CONDITIONAL_MODEL` and `USE_GPU` flag in constants.py and for multi-agent, activate `MULTI_CONDITIONAL_MODEL` flag and deactivate `USE_GPU` flag.
+
+***For Simulation Environment:*** To simulate trajectories at different user-defined conditions, change `TEST_METRIC` = 2 in Constants.py and select one of the below options:
+- ***To simulate single-agent***: Change the flag `CONSTANT_SPEED_SINGLE_CONDITION` in Constants.py to True and enter a value between 0 and 1 in CS_SINGLE_CONDITION variable  
+
+- ***To simulate multi-agent***: Change the flag `DIFFERENT_SPEED_MULTI_CONDITION` to True and enter a value between 0 and 1 to AV_SPEED, OTHER_SPEED, AGENT_SPEED in Constants.py.
+
+***For Prediction Environment:*** To predict trajectories, change the `TEST_METRIC` flag to 1.
+
+***Note:*** Either Simulation or Prediction can be performed at once. 
+
+After changing the required flags, run:
+````
+python evaluate_model.py
+````
+For Simulation: The output of the script enables the user to select the agent ids and the speed is verified for the user-selected agents.
+
+For Prediction: The ADE, FDE and CA metrics are given as output. 
+
+To train the model from scratch, 
+
+Change the CHECKPOINT_NAME (provide a new filename), change the required aggregation flags and run:
+````
+python train.py
+````

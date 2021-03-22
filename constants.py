@@ -1,10 +1,10 @@
 # DATASET OPTIONS
 OBS_LEN = 20
 PRED_LEN = 30
-MULTI_TRAIN_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/train'
-MULTI_VAL_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/val'
-CHECKPOINT_NAME = 'Checkpoints/MultiAgent/Multi_agent.pt'
-MULTI_TEST_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/test3'
+MULTI_TRAIN_DATASET_PATH = ''
+MULTI_VAL_DATASET_PATH = ''
+CHECKPOINT_NAME = ''
+MULTI_TEST_DATASET_PATH = ''
 
 SINGLE_TRAIN_DATASET_PATH = 'single_condition_dataset/eth/train'
 SINGLE_VAL_DATASET_PATH = 'single_condition_dataset/eth/val'
@@ -14,7 +14,6 @@ SINGLE_TEST_DATASET_PATH = 'single_condition_dataset/eth/test'
 SINGLE_CONDITIONAL_MODEL = False  # For single condition
 MULTI_CONDITIONAL_MODEL = True  # For multi condition
 
-# MAX SPEEDS FOR ARGOVERSE AND ETH/UCY DATASETS: speed above the MAX_SPEEDS are still considered as high speeds.
 # for argoverse
 AV_MAX_SPEED = 2.46
 OTHER_MAX_SPEED = 1.71
@@ -68,8 +67,6 @@ USE_GPU = 0  # use 1 for ETH/UCY and 0 for Argoverse
 TEST_METRIC = 2  # To simulate trajectories, change the flag to 2 and for prediction environment, change the flag to 1.
 TRAIN_METRIC = 0  # Used for training the model with the ground truth
 VERIFY_OUTPUT_SPEED = 1
-
-# STOP_PED_SINGLE_CONDITION, CONSTANT_SPEED_SINGLE_CONDITION - Only one flag out of the 2 can be activated at once.
 
 # Below flag is set to true if multi condition model on argoverse dataset is set to true.
 DIFFERENT_SPEED_MULTI_CONDITION = True
