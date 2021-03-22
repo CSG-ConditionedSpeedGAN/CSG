@@ -11,8 +11,8 @@ SINGLE_VAL_DATASET_PATH = 'single_condition_dataset/eth/val'
 SINGLE_TEST_DATASET_PATH = 'single_condition_dataset/eth/test'
 
 # Activate any one of the following flags
-SINGLE_CONDITIONAL_MODEL = False  # For single condition
-MULTI_CONDITIONAL_MODEL = True  # For multi condition
+SINGLE_CONDITIONAL_MODEL = True  # For single condition
+MULTI_CONDITIONAL_MODEL = False  # For multi condition
 
 # for argoverse
 AV_MAX_SPEED = 2.46
@@ -69,7 +69,7 @@ TRAIN_METRIC = 0  # Used for training the model with the ground truth
 VERIFY_OUTPUT_SPEED = 1
 
 # Below flag is set to true if multi condition model on argoverse dataset is set to true.
-DIFFERENT_SPEED_MULTI_CONDITION = True
+DIFFERENT_SPEED_MULTI_CONDITION = False
 AV_SPEED = 0.2
 OTHER_SPEED = 0.9
 AGENT_SPEED = 0.5
@@ -92,6 +92,7 @@ NUM_SAMPLES = 20
 NOISE = True
 NUM_SAMPLE_CHECK = 100
 
+# Flags used during Single-agent Extrapolation
 EXTRAPOLATE_MIN = False
 EXTRAPOLATE_MID = False
 EXTRAPOLATE_MAX = False
