@@ -57,7 +57,7 @@ In argoverse dataset, we set the ratio of low_speed:high_speed as 100:1.
 - `DIFFERENT_SPEED_MULTI_CONDITION`:  Used during Multi-agent simulation. If set True, enter a value between 0 and 1 to AV_SPEED, OTHER_SPEED, AGENT_SPEED.
 
 ## Pretrained Models:
-The code was developed and tested using Python 3.7.2.
+The code was developed and tested using Python 3.7.x.
 - For single-agent, `USE_GPU=1`:
     - `'NoAgg' folder`: contains 5 pretrained models for CSG.
     - `'PM' folder`: contains 5 pretrained models for CSG-P.
