@@ -5,7 +5,7 @@ MULTI_TRAIN_DATASET_PATH = ''
 MULTI_VAL_DATASET_PATH = ''
 MULTI_TEST_DATASET_PATH = ''
 
-CHECKPOINT_NAME = 'Checkpoints/No_Agg/eth.pt'
+CHECKPOINT_NAME = 'C:/Users/visha/CGANbasedTrajectoryPrediction/Checkpoints/no_aggregation/eth.pt'
 
 SINGLE_TRAIN_DATASET_PATH = 'single_condition_dataset/eth/train'
 SINGLE_VAL_DATASET_PATH = 'single_condition_dataset/eth/val'
