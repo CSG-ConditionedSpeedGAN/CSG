@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 
 import torch
 from torch.utils.data import Dataset
-from constants import *
+from code.constants import *
 
 
 def data_loader(path, metric, train_or_test):

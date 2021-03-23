@@ -1,8 +1,7 @@
 import torch
 import torch.nn as nn
-from constants import *
+from code.constants import *
 import math
-from utils import relative_to_abs, get_dataset_name
 from scipy.spatial.distance import pdist, squareform
 import numpy as np
 import torch.nn.functional as F

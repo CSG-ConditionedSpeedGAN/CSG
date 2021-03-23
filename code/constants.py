@@ -1,10 +1,11 @@
 # DATASET OPTIONS
-OBS_LEN = 20
-PRED_LEN = 30
+OBS_LEN = 8
+PRED_LEN = 12
 MULTI_TRAIN_DATASET_PATH = ''
 MULTI_VAL_DATASET_PATH = ''
-CHECKPOINT_NAME = ''
 MULTI_TEST_DATASET_PATH = ''
+
+CHECKPOINT_NAME = ''
 
 SINGLE_TRAIN_DATASET_PATH = 'single_condition_dataset/eth/train'
 SINGLE_VAL_DATASET_PATH = 'single_condition_dataset/eth/val'
@@ -78,7 +79,7 @@ AGENT_SPEED = 0.5
 STOP_PED_SINGLE_CONDITION = False  # Speed 0 will be imposed if the flag is set to True
 
 CONSTANT_SPEED_SINGLE_CONDITION = True
-CS_SINGLE_CONDITION = 0.9  # Constant speed single condition
+CS_SINGLE_CONDITION = 0.2  # Constant speed single condition
 
 ANIMATED_VISUALIZATION_CHECK = 0
 MAX_CONSIDERED_PED = 5

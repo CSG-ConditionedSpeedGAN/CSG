@@ -1,10 +1,10 @@
 import torch
 
-from VerifyOutputSpeed import verify_speed
-from trajectories import data_loader
-from models import TrajectoryGenerator, SpeedEncoderDecoder
-from utils import displacement_error, final_displacement_error, relative_to_abs
-from constants import *
+from code.VerifyOutputSpeed import verify_speed
+from code.trajectories import data_loader
+from code.models import TrajectoryGenerator, SpeedEncoderDecoder
+from code.utils import displacement_error, final_displacement_error, relative_to_abs
+from code.constants import *
 import numpy as np
 
 from scipy.spatial.distance import pdist, squareform
