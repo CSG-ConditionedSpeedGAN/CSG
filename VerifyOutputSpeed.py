@@ -32,7 +32,6 @@ def inverse_sigmoid(speeds, max_speed=None, labels=None):
     if SINGLE_CONDITIONAL_MODEL:
         print("The current speeds are: ", inv / max_speed)
     else:
-        #labels = labels.view(PRED_LEN, -1)
         av_tensor = [1, 0, 0]
         av = torch.FloatTensor(av_tensor)
         other_tensor = [0, 1, 0]

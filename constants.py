@@ -3,7 +3,7 @@ OBS_LEN = 20
 PRED_LEN = 30
 MULTI_TRAIN_DATASET_PATH = ''
 MULTI_VAL_DATASET_PATH = ''
-MULTI_TEST_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/Speed_check_Test'
+MULTI_TEST_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/test5'
 
 CHECKPOINT_NAME = 'Checkpoints/MultiAgent/Multi_agent.pt'
 
@@ -65,7 +65,7 @@ AGGREGATION_TYPE = 'None'  # the aggregations can be pooling or concat or attent
 USE_GPU = 0  # use 1 for ETH/UCY and 0 for Argoverse
 
 # SPEED CONTROL FLAGS
-TEST_METRIC = 2  # To simulate trajectories, change the flag to 2 and for prediction environment, change the flag to 1.
+TEST_METRIC = 1  # To simulate trajectories, change the flag to 2 and for prediction environment, change the flag to 1.
 TRAIN_METRIC = 0  # Used for training the model with the ground truth
 VERIFY_OUTPUT_SPEED = 1
 
