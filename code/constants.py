@@ -5,7 +5,7 @@ MULTI_TRAIN_DATASET_PATH = ''
 MULTI_VAL_DATASET_PATH = ''
 MULTI_TEST_DATASET_PATH = ''
 
-CHECKPOINT_NAME = ''
+CHECKPOINT_NAME = '' #Test
 
 SINGLE_TRAIN_DATASET_PATH = 'single_condition_dataset/eth/train'
 SINGLE_VAL_DATASET_PATH = 'single_condition_dataset/eth/val'
