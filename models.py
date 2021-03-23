@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from code.constants import *
+from constants import *
 import math
 from scipy.spatial.distance import pdist, squareform
 import numpy as np
