@@ -1,6 +1,6 @@
 # DATASET OPTIONS
-OBS_LEN = 8
-PRED_LEN = 12
+OBS_LEN = 8  # For single agent obs len is 8 and for multi agent obs len is 20
+PRED_LEN = 12  # For single agent pred len is 12 and for multi agent pred len is 30
 MULTI_TRAIN_DATASET_PATH = ''
 MULTI_VAL_DATASET_PATH = ''
 MULTI_TEST_DATASET_PATH = ''
