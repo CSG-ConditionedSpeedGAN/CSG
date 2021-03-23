@@ -1,19 +1,19 @@
 # DATASET OPTIONS
-OBS_LEN = 20
-PRED_LEN = 30
+OBS_LEN = 8
+PRED_LEN = 12
 MULTI_TRAIN_DATASET_PATH = ''
 MULTI_VAL_DATASET_PATH = ''
-MULTI_TEST_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/test5'
+MULTI_TEST_DATASET_PATH = ''
 
-CHECKPOINT_NAME = 'Checkpoints/MultiAgent/Multi_agent.pt'
+CHECKPOINT_NAME = 'Checkpoints/No_Agg/eth.pt'
 
 SINGLE_TRAIN_DATASET_PATH = 'single_condition_dataset/eth/train'
 SINGLE_VAL_DATASET_PATH = 'single_condition_dataset/eth/val'
 SINGLE_TEST_DATASET_PATH = 'single_condition_dataset/eth/test'
 
 # Activate any one of the following flags
-SINGLE_CONDITIONAL_MODEL = False  # For single condition
-MULTI_CONDITIONAL_MODEL = True  # For multi condition
+SINGLE_CONDITIONAL_MODEL = True  # For single condition
+MULTI_CONDITIONAL_MODEL = False  # For multi condition
 
 # for argoverse
 AV_MAX_SPEED = 2.46
@@ -62,10 +62,10 @@ L2_LOSS_WEIGHT = 1
 
 NUM_ITERATIONS = 3200
 AGGREGATION_TYPE = 'None'  # the aggregations can be pooling or concat or attention or None
-USE_GPU = 0  # use 1 for ETH/UCY and 0 for Argoverse
+USE_GPU = 1  # use 1 for ETH/UCY and 0 for Argoverse
 
 # SPEED CONTROL FLAGS
-TEST_METRIC = 1  # To simulate trajectories, change the flag to 2 and for prediction environment, change the flag to 1.
+TEST_METRIC = 2  # To simulate trajectories, change the flag to 2 and for prediction environment, change the flag to 1.
 TRAIN_METRIC = 0  # Used for training the model with the ground truth
 VERIFY_OUTPUT_SPEED = 1
 
