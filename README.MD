@@ -74,7 +74,7 @@ Initially clone the repository and navigate to the project folder and run:
 pip install -r requirements.txt
 ````
 
-After successful installation of the libraries, select the required pre-trained model from `'Checkpoints'` folder and change the `CHECKPOINT_NAME` variable in constants.py to the selected pre-trained model path and activate the corresponding `AGGREGATION_TYPE` flag, change `TRAIN_DATASET_PATH`, `VAL_DATASET_PATH` and `TEST_DATASET_PATH` in constants.py according to Single/Multi condition. For Extrapolation feature, the train, val and test datasets remains the same.
+After successful installation of the libraries, select the required pre-trained model from `'Checkpoints'` folder and change the `CHECKPOINT_NAME` variable in constants.py to the selected pre-trained model path and activate the corresponding `AGGREGATION_TYPE` flag, change `TRAIN_DATASET_PATH`, `VAL_DATASET_PATH` and `TEST_DATASET_PATH` in constants.py according to Single/Multi condition. For Extrapolation feature, use `'single_condition_dataset/extrapolation_dataset'`. For Extrapolation, the train, val and test datasets remains the same.
 
 - For single-agent activate `SINGLE_CONDITIONAL_MODEL` and `USE_GPU` flag in constants.py and for multi-agent, activate `MULTI_CONDITIONAL_MODEL` flag and deactivate `USE_GPU` flag.
 
