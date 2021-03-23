@@ -62,7 +62,7 @@ L2_LOSS_WEIGHT = 1
 
 NUM_ITERATIONS = 3200
 AGGREGATION_TYPE = 'None'  # the aggregations can be pooling or concat or attention or None
-USE_GPU = 1  # use 1 for ETH/UCY and 0 for Argoverse
+USE_GPU = 0  # use 1 for ETH/UCY and 0 for Argoverse
 
 # SPEED CONTROL FLAGS
 TEST_METRIC = 2  # To simulate trajectories, change the flag to 2 and for prediction environment, change the flag to 1.
