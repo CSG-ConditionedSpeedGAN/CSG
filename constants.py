@@ -1,6 +1,6 @@
 # DATASET OPTIONS
-OBS_LEN = 8
-PRED_LEN = 12
+OBS_LEN = 20
+PRED_LEN = 30
 MULTI_TRAIN_DATASET_PATH = ''
 MULTI_VAL_DATASET_PATH = ''
 MULTI_TEST_DATASET_PATH = 'C:/Users/visha/MasterThesis/ArgoverseSamples/Speed_check_Test'
