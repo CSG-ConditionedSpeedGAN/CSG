@@ -89,7 +89,7 @@ After successful installation of the libraries, select the required pre-trained 
 
 After changing the required flags, run:
 ````
-python evaluate_model.py
+python code/evaluate_model.py
 ````
 ***For Simulation:*** The output of the script enables the user to select the agent ids and the speed is verified for the user-selected agents.
 
@@ -99,7 +99,7 @@ To train the model from scratch,
 
 Change the `CHECKPOINT_NAME` in constants.py (provide a new filename), change the required aggregation flags and run:
 ````
-python train.py
+python code/train.py
 ````
 
 Implementation details can be found [here](Implementation_details.MD)
