@@ -78,12 +78,12 @@ After successful installation of the libraries, select the required pre-trained 
 
 - For single-agent activate `SINGLE_CONDITIONAL_MODEL` and `USE_GPU` flag in constants.py and for multi-agent, activate `MULTI_CONDITIONAL_MODEL` flag and deactivate `USE_GPU` flag.
 
-***For Simulation Environment:*** To simulate trajectories at different user-defined conditions, change `TEST_METRIC` = 2 in constants.py and select one of the below options:
+***For Simulation Environment:*** To simulate trajectories at different user-defined conditions, change `TEST_METRIC` = 2 in constants.py and select one of the below options according to Single/Multi condition:
 - ***To simulate single-agent***: Change the flag `CONSTANT_SPEED_SINGLE_CONDITION` in constants.py to True and enter a value between 0 and 1 in CS_SINGLE_CONDITION variable  
 
 - ***To simulate multi-agent***: Change the flag `DIFFERENT_SPEED_MULTI_CONDITION` to True and enter a value between 0 and 1 to AV_SPEED, OTHER_SPEED, AGENT_SPEED in constants.py.
 
-***For Prediction Environment:*** To predict trajectories, change the `TEST_METRIC` flag to 1 in constants.py.
+***For Prediction Environment:*** To predict trajectories using the output of SR, change the `TEST_METRIC` flag to 1 in constants.py.
 
 ***Note:*** Either Simulation or Prediction can be performed at once. 
 
