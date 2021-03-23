@@ -25,6 +25,7 @@ def make_mlp(dim_list, activation='leakyrelu', batch_norm=True, dropout=0):
 
 
 class SpeedEncoderDecoder(nn.Module):
+    """Speed Regressor Component to predict agent's speed"""
     def __init__(self, h_dim):
         super(SpeedEncoderDecoder, self).__init__()
 
@@ -102,6 +103,7 @@ class Encoder(nn.Module):
             embedding_input = torch.cat([obs_traj, obs_ped_speed], dim=2)
         traj_speed_embedding = self.spatial_embedding(embedding_input.contiguous().view(-1, self.mlp_input_dim))
         obs_traj_embedding = traj_speed_embedding.view(-1, batch, self.embedding_dim)
+        # Initializing Encoder hidden states with zeroes
         state_tuple = self.init_hidden(batch)
         output, state = self.encoder(obs_traj_embedding, state_tuple)
         final_h = state[0]
@@ -150,19 +152,20 @@ class Decoder(nn.Module):
         decoder_input = decoder_input.view(1, batch, self.embedding_dim)
 
         for id in range(PRED_LEN):
+            # At first prediction timestep, we initialize the decoder with Encoder hidden states + aggregation component
             output, state_tuple = self.decoder(decoder_input, state_tuple)
             rel_pos = self.hidden2pos(output.view(-1, self.h_dim))
             curr_pos = rel_pos + last_pos
             if id + 1 != PRED_LEN:
-                if train_or_test == 0:
+                if train_or_test == 0:  # GT used during CSG training
                     speed = pred_ped_speed[id + 1, :, :]
                     if MULTI_CONDITIONAL_MODEL:
                         curr_label = label[0, :, :]
-                elif train_or_test == 1:
+                elif train_or_test == 1:  # During prediction, CSG is conditioned using the SR's next timestep speed
                     speed = fake_ped_speed[id + 1, :, :]
                     if MULTI_CONDITIONAL_MODEL:
                         curr_label = label[0, :, :]
-                else:
+                else:  # During Simulation, CSG is conditioned using the user-defined speed.
                     if SINGLE_CONDITIONAL_MODEL:
                         speed = speed_control(pred_ped_speed[0, :, :], seq_start_end, id=id+1)
                     elif MULTI_CONDITIONAL_MODEL:
@@ -183,6 +186,7 @@ class Decoder(nn.Module):
 
 
 class PoolingModule(nn.Module):
+    """Pooling module component similar to Social-GAN"""
 
     def __init__(self, h_dim, mlp_input_dim):
         super(PoolingModule, self).__init__()
@@ -222,6 +226,7 @@ class PoolingModule(nn.Module):
 
 
 class AggregationModule(nn.Module):
+    """Aggregation module to aggregate 'N' nearest neighbours hidden states"""
 
     def __init__(self, h_dim, mlp_input_dim):
         super(AggregationModule, self).__init__()
@@ -274,6 +279,7 @@ class AggregationModule(nn.Module):
 
 
 class AttentionModule(nn.Module):
+    """Attention module to identify the important agents in the 'N' nearest neighbours"""
 
     def __init__(self, h_dim, mlp_input_dim):
         super(AttentionModule, self).__init__()
@@ -344,8 +350,7 @@ class AttentionModule(nn.Module):
 
 
 def speed_control(pred_traj_first_speed, seq_start_end, label=None, id=None):
-    """This method acts as speed regulator. Using this method, user can add
-    speed at one/more frames, stop the agent and so on"""
+    """Method that acts as Speed controller: user speed between 0 and 1 is scaled respectively according to Single/Multi condition"""
     for _, (start, end) in enumerate(seq_start_end):
         start = start.item()
         end = end.item()
@@ -357,6 +362,7 @@ def speed_control(pred_traj_first_speed, seq_start_end, label=None, id=None):
             agent_tensor = [0, 0, 1]
             agent = torch.FloatTensor(agent_tensor)
             if DIFFERENT_SPEED_MULTI_CONDITION:
+                # Implementing different speeds to different agent. To provide constant speed, provide same value for all agents
                 for a in range(start, end):
                     for b, c in zip(label[start: end], range(start, end)):
                         if torch.all(torch.eq(b, av)):
@@ -367,6 +373,7 @@ def speed_control(pred_traj_first_speed, seq_start_end, label=None, id=None):
                             pred_traj_first_speed[c] = sigmoid(AGENT_SPEED * AGENT_MAX_SPEED)
         elif SINGLE_CONDITIONAL_MODEL:
             if CONSTANT_SPEED_SINGLE_CONDITION:
+                # Implementing constant speed to all agents
                 speed_to_simulate = SINGLE_AGENT_MAX_SPEED * CS_SINGLE_CONDITION
                 for a in range(start, end):
                     pred_traj_first_speed[a] = sigmoid(speed_to_simulate)
@@ -429,10 +436,12 @@ class TrajectoryGenerator(nn.Module):
 
     def forward(self, obs_traj, obs_traj_rel, seq_start_end, obs_ped_speed, pred_ped_speed, pred_traj, train_or_test, fake_ped_speed, obs_obj_rel_speed, obs_label=None, pred_label=None, user_noise=None):
         batch = obs_traj_rel.size(1)
+        # For multi condition, the encoder is additionally conditioned with agent-type information
         if MULTI_CONDITIONAL_MODEL:
             final_encoder_h = self.encoder(obs_traj_rel, obs_ped_speed, label=obs_label)
         else:
             final_encoder_h = self.encoder(obs_traj_rel, obs_ped_speed, label=None)
+        # Aggregation module to jointly reason agent-agent interaction.
         if AGGREGATION_TYPE == 'pooling':
             pm_final_vector = self.conditionalPoolingModule(final_encoder_h, seq_start_end, train_or_test, obs_traj[-1, :, :])
             mlp_decoder_context_input = torch.cat([final_encoder_h.view(-1, self.h_dim), pm_final_vector], dim=1)
@@ -445,7 +454,7 @@ class TrajectoryGenerator(nn.Module):
         else:
             mlp_decoder_context_input = final_encoder_h.view(-1, self.h_dim)
         noise_input = self.mlp_decoder_context(mlp_decoder_context_input)
-
+        # We add Gaussian noise to induce randomness
         decoder_h = self.add_noise(noise_input, seq_start_end).unsqueeze(dim=0)
         if USE_GPU:
             decoder_c = torch.zeros(self.num_layers, batch, self.h_dim).cuda()
@@ -475,6 +484,7 @@ class TrajectoryDiscriminator(nn.Module):
         self.real_classifier = make_mlp(real_classifier_dims, activation=ACTIVATION_RELU, batch_norm=BATCH_NORM, dropout=DROPOUT)
 
     def forward(self, traj, traj_rel, ped_speed, label=None):
+        # Similar to G, the encoder in D for multi-agent model is additionally conditioned on agent-type
         if MULTI_CONDITIONAL_MODEL:
             final_h = self.encoder(traj_rel, ped_speed, label=label)
         else:

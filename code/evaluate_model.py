@@ -137,6 +137,7 @@ def evaluate(loader, generator, num_samples, speed_regressor):
         colpercent = collisionPercentage(simulated_traj, sequences)
         print('Collision Percentage: ', colpercent * 100)
 
+        # The user defined speed is verified by computing inverse sigmoid function on the output speed of the model.
         if TEST_METRIC == 2:
             if SINGLE_CONDITIONAL_MODEL:
                 verify_speed(simulated_traj, sequences, labels=None)
@@ -173,6 +174,7 @@ def main():
     print('Test dataset preprocessing done')
 
     cm, ade_final, fde_final = [], [], []
+    # For prediction environment, we report the metric for 20 runs
     if TEST_METRIC == 1:
         for _ in range(20):
             ade, fde, ca = evaluate(loader, generator, NUM_SAMPLES, speed_regressor)
