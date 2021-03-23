@@ -1,7 +1,7 @@
 import torch
 import numpy as np
-from constants import *
-from utils import get_dataset_name
+from code.constants import *
+from code.utils import get_dataset_name
 
 
 def get_traj(trajectories, sequences, labels=None):

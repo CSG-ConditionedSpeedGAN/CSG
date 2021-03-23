@@ -3,13 +3,13 @@ from collections import defaultdict
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from constants import *
+from code.constants import *
 
 
-from trajectories import data_loader
-from utils import gan_g_loss, gan_d_loss, l2_loss, displacement_error, final_displacement_error, relative_to_abs, mae_loss
+from code.trajectories import data_loader
+from code.utils import gan_g_loss, gan_d_loss, l2_loss, displacement_error, final_displacement_error, relative_to_abs, mae_loss
 
-from models import TrajectoryGenerator, TrajectoryDiscriminator, SpeedEncoderDecoder
+from code.models import TrajectoryGenerator, TrajectoryDiscriminator, SpeedEncoderDecoder
 
 torch.backends.cudnn.benchmark = True
 
